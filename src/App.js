@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Container from './component/container';
 import AppBar from './component/AppBar';
 import HomePage from './views/home';
-import MoviesPage from './views/moviesPage';
+import MoviesDetailsPage from './views/moviesDetailsPage';
 
 export default function App() {
   return (
@@ -13,8 +13,8 @@ export default function App() {
         <Route path="/" exact>
           <HomePage />
         </Route>
-        <Route path="/movies">
-          <MoviesPage />
+        <Route path="/movies/:movieId">
+          <MoviesDetailsPage />
         </Route>
       </Switch>
     </Container>
