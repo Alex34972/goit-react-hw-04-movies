@@ -1,0 +1,13 @@
+.movie__container {
+  display: flex;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgb(8, 5, 161);
+}
+
+.movie_image__container {
+  margin-right: 15px;
+}
+
+.movie__name {
+  margin-left: 0;
+}
