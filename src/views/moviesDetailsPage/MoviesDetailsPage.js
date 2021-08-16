@@ -11,8 +11,10 @@ import s from './MoviesDetailsPage.module.css';
 import * as MovieAPI from '../../services/movies-api';
 import MoviesCard from '../../component/moviesCard';
 import PageHeading from '../../component/pageHeading';
-
+import Button from '../../component/buttons/';
+const Cast = lazy(() => import('../moviesDetailsPage/cast/cast'));
 const Reviews = lazy(() => import('../moviesDetailsPage/reviews/Reviews'));
+
 export default function MoviesDetailsPage() {
   const location = useLocation();
   const { movieId } = useParams();
@@ -35,9 +37,7 @@ export default function MoviesDetailsPage() {
   return (
     <>
       <PageHeading text="Movie" />
-      <button type="button" className="go-back-button">
-        Go Back
-      </button>
+      <Button text="Go Back" />
       {movie && <MoviesCard movie={movie} />}
       <div className={s.information__container}>
         <h3 className={s.information__title}>Additional information</h3>
@@ -65,7 +65,9 @@ export default function MoviesDetailsPage() {
       </div>
       <Suspense fallback={<h3>Loading</h3>}>
         <Switch>
-          <Route path={`${path}/cast`} exact></Route>
+          <Route path={`${path}/cast`} exact>
+            <Cast />
+          </Route>
 
           <Route path={`${path}/reviews`} exact>
             <Reviews />

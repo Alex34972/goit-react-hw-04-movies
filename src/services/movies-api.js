@@ -24,3 +24,8 @@ export function fetchReviews(id) {
     `${BASE_URL}/3/movie/${id}/reviews?api_key=${KEY_API}&language=en-US&page=1`,
   );
 }
+export function fetchCast(id) {
+  return fetchWithErrorHandling(
+    `${BASE_URL}/3/movie/${id}/credits?api_key=${KEY_API}&language=en-US`,
+  );
+}
