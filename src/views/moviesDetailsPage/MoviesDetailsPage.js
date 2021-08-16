@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-
+import { useState, useEffect, lazy, Suspense } from 'react';
 import {
   NavLink,
   Switch,
@@ -8,10 +7,12 @@ import {
   useRouteMatch,
   useLocation,
 } from 'react-router-dom';
+import s from './MoviesDetailsPage.module.css';
 import * as MovieAPI from '../../services/movies-api';
 import MoviesCard from '../../component/moviesCard';
 import PageHeading from '../../component/pageHeading';
 
+const Reviews = lazy(() => import('../moviesDetailsPage/reviews/Reviews'));
 export default function MoviesDetailsPage() {
   const location = useLocation();
   const { movieId } = useParams();
@@ -38,15 +39,15 @@ export default function MoviesDetailsPage() {
         Go Back
       </button>
       {movie && <MoviesCard movie={movie} />}
-      <div className="information-container">
-        <h3 className="information-title">Additional information</h3>
+      <div className={s.information__container}>
+        <h3 className={s.information__title}>Additional information</h3>
         <nav>
           <NavLink
             to={{
               pathname: `${url}/cast`,
               state: { from: location?.state?.from },
             }}
-            className="information-link"
+            className={s.information__link}
           >
             Cast
           </NavLink>
@@ -56,18 +57,21 @@ export default function MoviesDetailsPage() {
               pathname: `${url}/reviews`,
               state: { from: location?.state?.from },
             }}
-            className="information-link"
+            className={s.information__link}
           >
             Reviews
           </NavLink>
         </nav>
       </div>
+      <Suspense fallback={<h3>Loading</h3>}>
+        <Switch>
+          <Route path={`${path}/cast`} exact></Route>
 
-      <Switch>
-        <Route path={`${path}/cast`} exact></Route>
-
-        <Route path={`${path}/reviews`} exact></Route>
-      </Switch>
+          <Route path={`${path}/reviews`} exact>
+            <Reviews />
+          </Route>
+        </Switch>
+      </Suspense>
     </>
   );
 }

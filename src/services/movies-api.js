@@ -19,6 +19,8 @@ export function fetchMovie(id) {
   );
 }
 
-//export function fetchBookById(bookId) {
-//  return fetchWithErrorHandling(`${BASE_URL}/books/${bookId}?_expand=author`);
-//}
+export function fetchReviews(id) {
+  return fetchWithErrorHandling(
+    `${BASE_URL}/3/movie/${id}/reviews?api_key=${KEY_API}&language=en-US&page=1`,
+  );
+}
