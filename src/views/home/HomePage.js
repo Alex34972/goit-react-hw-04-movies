@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useRouteMatch } from 'react-router-dom';
 import * as MoviesTrendingAPI from '../../services/movies-api';
 import PageHeading from '../../component/pageHeading';
 
 export default function HomePage() {
   const { url } = useLocation();
   const [movies, setMovies] = useState([]);
-
+  const match = useRouteMatch();
+  console.log('m', match);
   useEffect(() => {
     MoviesTrendingAPI.fetchMoviesTrending().then(response => {
       const fetchedMovies = response.results.map(movie => {
@@ -15,14 +16,13 @@ export default function HomePage() {
           movieName: movie.title ?? movie.name,
         };
       });
-
       setMovies(prevState => [...prevState, ...fetchedMovies]);
     });
   }, []);
 
   return (
     <div>
-      <PageHeading />
+      <PageHeading text="Trending Today" />
       <ul>
         {movies.map(({ movieId, movieName }) => (
           <li key={movieId}>
