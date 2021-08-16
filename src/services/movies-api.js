@@ -13,9 +13,11 @@ export function fetchMoviesTrending() {
   );
 }
 
-//export function fetchBooks() {
-//  return fetchWithErrorHandling(`${BASE_URL}/books`);
-//}
+export function fetchMovie(id) {
+  return fetchWithErrorHandling(
+    `${BASE_URL}/3/movie/${id}?api_key=${KEY_API}&language=en-US`,
+  );
+}
 
 //export function fetchBookById(bookId) {
 //  return fetchWithErrorHandling(`${BASE_URL}/books/${bookId}?_expand=author`);
