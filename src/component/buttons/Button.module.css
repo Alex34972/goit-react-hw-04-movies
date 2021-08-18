@@ -1,7 +1,9 @@
 .button {
+  align-items: center;
   background-color: #606dbc;
   border: none;
-  margin-bottom: 10px;
+  border-radius: 3px;
+  margin-left: 5px;
   padding: 5px 10px;
   font-size: large;
   font-weight: bold;

@@ -1,0 +1,9 @@
+input {
+  width: 250px;
+  height: 24px;
+  border-radius: 3px;
+  font-size: 20px;
+}
+.searchForm {
+  margin: 10px;
+}

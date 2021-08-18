@@ -29,3 +29,8 @@ export function fetchCast(id) {
     `${BASE_URL}/3/movie/${id}/credits?api_key=${KEY_API}&language=en-US`,
   );
 }
+export function fetchSearchMovies(query) {
+  return fetchWithErrorHandling(
+    `${BASE_URL}/3/search/movie?api_key=${KEY_API}&language=en-US&query=${query}&page=1&include_adult=false`,
+  );
+}
