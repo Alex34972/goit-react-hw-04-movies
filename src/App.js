@@ -1,19 +1,19 @@
 import { lazy, Suspense } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Container from './component/container';
 import AppBar from './component/AppBar';
+import LoaderComponent from './component/loader';
 
-const HomePage = lazy(() => import('./views/homePage/HomePage'));
-const MoviesPage = lazy(() => import('./views/moviesPage/MoviesPage'));
-const MoviesDetailsPage = lazy(() =>
-  import('./views/moviesDetailsPage/MoviesDetailsPage'),
-);
+const HomePage = lazy(() => import('./views/homePage'));
+const MoviesPage = lazy(() => import('./views/moviesPage'));
+const MoviesDetailsPage = lazy(() => import('./views/moviesDetailsPage'));
+const NotFoundView = lazy(() => import('./views/notFoundView'));
 
 export default function App() {
   return (
     <Container>
       <AppBar />
-      <Suspense fallback={<h3>Loading</h3>}>
+      <Suspense fallback={<LoaderComponent />}>
         <Switch>
           <Route path="/" exact>
             <HomePage />
@@ -24,7 +24,9 @@ export default function App() {
           <Route path="/movies/:movieId">
             <MoviesDetailsPage />
           </Route>
-          <Redirect to="/" />
+          <Route>
+            <NotFoundView />
+          </Route>
         </Switch>
       </Suspense>
     </Container>

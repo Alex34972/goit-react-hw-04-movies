@@ -16,3 +16,15 @@
 .information__link:not(:last-child) {
   margin-bottom: 10px;
 }
+.information__button {
+  display: flex;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  background-color: #606dbc;
+  font-size: 16px;
+  align-items: center;
+  cursor: pointer;
+  text-transform: uppercase;
+}

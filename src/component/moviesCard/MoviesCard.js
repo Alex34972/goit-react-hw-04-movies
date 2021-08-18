@@ -1,5 +1,5 @@
 import s from './MoviesCard.module.css';
-
+import noImageFound from '../../image/no-image-icon-4.png';
 export default function MoviesCad({ movie }) {
   return (
     <div className={s.movie__container}>
@@ -8,7 +8,7 @@ export default function MoviesCad({ movie }) {
           src={
             movie.img !== null
               ? 'https://image.tmdb.org/t/p/w400' + movie.img
-              : '../image/logo512.png'
+              : `${noImageFound}`
           }
           alt={movie.name}
         />
