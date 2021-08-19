@@ -5,5 +5,5 @@ export default function PageHeading({ text }) {
   return <h1 className={s.title}>{text}</h1>;
 }
 PageHeading.propTypes = {
-  test: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
 };
