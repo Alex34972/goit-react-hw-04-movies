@@ -4,7 +4,7 @@ import Button from '../../component/buttons/';
 
 import s from './MoviesSearch.module.css';
 
-const MoviesSearch = ({ onSearch, isLoading }) => {
+const MoviesSearch = ({ onSearch }) => {
   const [search, setSearch] = useState('');
 
   const handleChange = event => {
