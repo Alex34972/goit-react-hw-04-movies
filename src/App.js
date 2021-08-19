@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import Container from './component/container';
 import AppBar from './component/AppBar';
 import LoaderComponent from './component/loader';
@@ -27,6 +27,7 @@ export default function App() {
           <Route>
             <NotFoundView />
           </Route>
+          <Redirect to="/" exact />
         </Switch>
       </Suspense>
     </Container>
