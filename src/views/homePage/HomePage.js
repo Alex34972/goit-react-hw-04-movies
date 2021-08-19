@@ -26,7 +26,7 @@ export default function HomePage() {
       })
       .finally(() => setIsLoading(false));
   }, [error]);
-  console.log(error);
+
   return (
     <div>
       <PageHeading text="Trending Today" />
