@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import s from './MoviesCard.module.css';
 import noImageFound from '../../image/no-image-icon-4.png';
 export default function MoviesCad({ movie }) {
-  console.log({ movie });
   return (
     <div className={s.movie__container}>
       <div className={s.movie_image__container}>
