@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import LoaderComponent from '../../component/loader';
 
 import MoviesSearch from '../../component/moviesSearch';
@@ -8,15 +8,25 @@ import * as SearchMoviesAPI from '../../services/movies-api';
 
 export default function MoviesPage() {
   const location = useLocation();
+  const history = useHistory();
   const [movies, setMovies] = useState([]);
-  const [search, setSearch] = useState('');
+  const [query, setQuery] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (search === '') {
+    if (location.search === '') {
       return;
     }
-    SearchMoviesAPI.fetchSearchMovies(search)
+
+    const newSearch = new URLSearchParams(location.search).get('query');
+    setQuery(newSearch);
+  }, [location.search]);
+
+  useEffect(() => {
+    if (query === '') {
+      return;
+    }
+    SearchMoviesAPI.fetchSearchMovies(query)
       .then(response => {
         const fetchedMovies = response.results.map(movie => {
           return {
@@ -28,11 +38,13 @@ export default function MoviesPage() {
         setMovies(prevState => [...prevState, ...fetchedMovies]);
       })
       .finally(() => setIsLoading(false));
-  }, [search]);
+  }, [query]);
 
-  const onSearchHandle = query => {
-    setSearch(query);
+  const onSearchHandle = newSearch => {
+    if (query === newSearch) return;
+    setQuery(newSearch);
     setMovies([]);
+    history.push({ ...location, search: `query=${newSearch}&page=1` });
   };
 
   return (
