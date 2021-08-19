@@ -1,6 +1,8 @@
+import PropTypes from 'prop-types';
 import s from './MoviesCard.module.css';
 import noImageFound from '../../image/no-image-icon-4.png';
 export default function MoviesCad({ movie }) {
+  console.log({ movie });
   return (
     <div className={s.movie__container}>
       <div className={s.movie_image__container}>
@@ -24,3 +26,17 @@ export default function MoviesCad({ movie }) {
     </div>
   );
 }
+MoviesCad.propTypes = {
+  movie: PropTypes.shape({
+    img: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    score: PropTypes.number.isRequired,
+    overview: PropTypes.string.isRequired,
+    genres: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+      }),
+    ),
+  }),
+};
