@@ -5,7 +5,7 @@ import PageHeading from '../../component/pageHeading';
 import LoaderComponent from '../../component/loader';
 import ErrorComponent from '../../component/error';
 export default function HomePage() {
-  const { location } = useLocation();
+  const location = useLocation();
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
