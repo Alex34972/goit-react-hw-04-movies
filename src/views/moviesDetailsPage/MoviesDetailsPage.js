@@ -14,8 +14,14 @@ import MoviesCard from '../../component/moviesCard';
 import PageHeading from '../../component/pageHeading';
 import LoaderComponent from '../../component/loader';
 
-const Cast = lazy(() => import('../moviesDetailsPage/cast/cast'));
-const Reviews = lazy(() => import('../moviesDetailsPage/reviews/Reviews'));
+const Cast = lazy(() =>
+  import('../moviesDetailsPage/cast/cast' /* webpackChunkName: "Cast"*/),
+);
+const Reviews = lazy(() =>
+  import(
+    '../moviesDetailsPage/reviews/Reviews' /* webpackChunkName: "Reviews"*/
+  ),
+);
 
 export default function MoviesDetailsPage() {
   const location = useLocation();
